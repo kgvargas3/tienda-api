@@ -1,0 +1,50 @@
+### Pruebas para la extension "REST Client" de VS Code (humao.rest-client).
+### Haz clic en "Send Request" sobre cada solicitud.
+
+### 1. Consultar todos los productos (200)
+GET http://localhost:8080/api/productos
+
+### 2. Consultar un producto existente (200)
+GET http://localhost:8080/api/productos/1
+
+### 3. Consultar un producto inexistente (404)
+GET http://localhost:8080/api/productos/999
+
+### 4. Registrar un producto valido (201)
+POST http://localhost:8080/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Monitor",
+  "precio": 199.99,
+  "stock": 8
+}
+
+### 5. Registro con precio invalido (400)
+POST http://localhost:8080/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Cable HDMI",
+  "precio": 0,
+  "stock": 10
+}
+
+### 6. Registro con stock negativo (400)
+POST http://localhost:8080/api/productos
+Content-Type: application/json
+
+{
+  "nombre": "Audifonos",
+  "precio": 25.50,
+  "stock": -5
+}
+
+### 7. Eliminar un producto existente (204)
+DELETE http://localhost:8080/api/productos/1
+
+### 8. Eliminar un producto inexistente (404)
+DELETE http://localhost:8080/api/productos/999
+
+### 9. Ruta que no existe (404 generado por Spring, no por la aplicacion)
+GET http://localhost:8080/api/clientes
